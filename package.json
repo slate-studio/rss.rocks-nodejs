@@ -1,0 +1,25 @@
+{
+  "name": "rss.rocks-nodejs",
+  "version": "0.0.0",
+  "description": "Backend for RSS.rocks! application.",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/slate-studio/rss.rocks-nodejs.git"
+  },
+  "author": "Alexander Kravets",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/slate-studio/rss.rocks-nodejs/issues"
+  },
+  "dependencies": {
+    "logfmt": "~1.1.2",
+    "express": "~4.6.1"
+  }
+  "engines": {
+    "node": "0.10.x"
+  }
+}
