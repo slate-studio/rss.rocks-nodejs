@@ -5,9 +5,11 @@ var app = express();
 
 app.use(logfmt.requestLogger());
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
-});
+app.use(express.static(__dirname + '/public'));
+
+// We can implement applications custom API functions here.
+// --------------------------------------------------------
+// app.get('/', function(req, res) { res.send('Hello World!'); });
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
