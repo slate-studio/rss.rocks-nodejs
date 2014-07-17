@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "logfmt": "~1.1.2",
-    "express": "~4.6.1"
+    "express": "~4.6.1",
+    "firebase": "1.0.17"
   },
   "engines": {
     "node": "0.10.x"
