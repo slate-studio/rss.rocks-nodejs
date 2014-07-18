@@ -16,9 +16,12 @@
     "url": "https://github.com/slate-studio/rss.rocks-nodejs/issues"
   },
   "dependencies": {
-    "logfmt": "~1.1.2",
-    "express": "~4.6.1",
-    "firebase": "1.0.17"
+    "logfmt":     "~1.1.2",
+    "express":    "~4.6.1",
+    "firebase":   "1.0.17",
+    "feedparser": "0.18.1",
+    "request":    "2.37.0",
+    "iconv":      "2.1.4"
   },
   "engines": {
     "node": "0.10.x"

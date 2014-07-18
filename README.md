@@ -4,12 +4,22 @@ Heroku setup: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
 ### web.js
 
-Implements information interface/admin for the app. In firebase case it is not required, cause all data logic can be implemented on frontend side same way as on node.js backend. So this should be probably replaced with static HTML+JS+CSS app.
+Implements information interface/admin for the app. Custom paths and handlers are not required, cause all data logic can be implemented on frontend side same way as on node.js backend. So this just enables public folder for static HTML+JS+CSS app.
 
-This might implement some app specific APIs.
+Application custom APIs should be implemented here.
 
 ### worker.js
 
-This part of the app could implement backend callbacks of Firebase, that can help to implement some data logic and organization. This might be very helpful with Firebase limitations.
+This makes possible backend callbacks of Firebase, that can help to implement some data logic and data optimization/organization. This might be very helpful consider Firebase limits.
 
-### cron.sh
+### bin/cron.js
+
+Backend scheduled tasks.
+
+## Sending Mail with Postmark
+
+https://devcenter.heroku.com/articles/postmark#sending-emails-in-nodejs
+
+## Node Hosting
+
+https://github.com/joyent/node/wiki/Node-Hosting

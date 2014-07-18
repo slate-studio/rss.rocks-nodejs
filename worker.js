@@ -3,7 +3,7 @@
 
 var Firebase = require('firebase');
 
-firebaseAppName = 'sizzling-fire-6443'
+firebaseAppName = 'rss-rocks'
 var firebaseRef = new Firebase('https://'+firebaseAppName+'.firebaseio.com')
 var subscriptionsRef = firebaseRef.child('subscriptions')
 
