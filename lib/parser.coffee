@@ -5,6 +5,7 @@ FeedParser = require('feedparser')
 request    = require('request')
 Iconv      = require('iconv').Iconv
 
+
 getParams = (str) ->
   params = str.split(';').reduce(((params, param) ->
     parts = param.split('=').map (part) -> return part.trim()
@@ -14,9 +15,16 @@ getParams = (str) ->
   ), {})
   return params
 
+
 module.exports = class Parser
-  constructor: (@urls) ->
-    @urls.map (url) => @fetch(url)
+  constructor: (@urls, @onFetchedCallback) ->
+    @urlsCount   = @urls.length
+    @urlsFetched = 0
+    @posts       = {}
+
+    @urls.map (url) =>
+      @posts[url] = []
+      @fetch(url)
 
   fetch: (url) ->
     # Define our streams
@@ -28,7 +36,7 @@ module.exports = class Parser
     feedparser = new FeedParser()
 
     # Define our handlers
-    req.on 'error', @done
+    req.on 'error', => @done()
     req.on 'response', (res) ->
       stream = this
 
@@ -41,7 +49,7 @@ module.exports = class Parser
         try
           iconv = new Iconv(charset, 'utf-8')
           console.log('Converting from charset %s to utf-8', charset)
-          iconv.on('error', @done)
+          iconv.on 'error', => @done()
           # If we're using iconv, stream will be the output of iconv
           # otherwise it will remain the output of request
           stream = this.pipe(iconv)
@@ -51,17 +59,20 @@ module.exports = class Parser
       # And boom goes the dynamite
       stream.pipe(feedparser)
 
-    feedparser.on 'error', @done
-    feedparser.on 'end', @done
+    feedparser.on 'error', => @done()
+    feedparser.on 'end', => @done()
+
+    posts = @posts
     feedparser.on 'readable', ->
       while (post = this.read())
-        console.log(post.title)
-        console.log(post.link)
+        posts[url].push({ title: post.title, link: post.link })
 
   done: (err) ->
     if err
       console.log(err, err.stack)
-      return process.exit(1)
 
-    #server.close();
-    #process.exit()
+    @urlsFetched += 1
+    console.log 'fetched ' + @urlsFetched + ' out of ' + @urlsCount
+
+    if @urlsFetched == @urlsCount
+      @onFetchedCallback(@posts)

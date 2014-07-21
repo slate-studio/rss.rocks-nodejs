@@ -5,7 +5,9 @@ Array::unique = ->
   output[@[key]] = @[key] for key in [0...@length]
   value for key, value of output
 
-Parser = require('../lib/parser')
+Parser   = require('../lib/parser')
+Archive  = require('../lib/archive')
+Sender   = require('../lib/sender')
 Firebase = require('firebase')
 
 class Cron
@@ -19,10 +21,10 @@ class Cron
       @usersRef.off()
       @users = snapshot.val()
 
-      @getFeeds()
-      @updateFeeds()
+      @pullFeedsOutOfSubscriptions()
+      @sendEmailsWithNewPosts()
 
-  getFeeds: ->
+  pullFeedsOutOfSubscriptions: ->
     # TODO: this can be handle by backend helper that saves unique feeds collection
     #       while user adds subscription.
     feeds = []
@@ -34,8 +36,15 @@ class Cron
 
     @feeds = feeds.unique()
 
-  updateFeeds: ->
-    new Parser @feeds, -> process.exit()
+  sendEmailsWithNewPosts: ->
+    # fetch feeds urls and collect all published posts
+    new Parser @feeds, (feedsAndPosts) =>
+      # collect new posts and archive them
+      new Archive @firebaseRef, feedsAndPosts, (feedsAndNewPosts) =>
+        # send email with new posts to subscribers
+        new Sender @usersRef, feedsAndNewPosts, ->
+          console.log 'done'
+          process.exit()
 
 job = new Cron()
 job.start()
