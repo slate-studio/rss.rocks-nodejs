@@ -1,16 +1,15 @@
-#! /app/vendor/node/bin/node
 
 Array::unique = ->
   output = {}
   output[@[key]] = @[key] for key in [0...@length]
   value for key, value of output
 
-Parser   = require('../lib/parser')
-Archive  = require('../lib/archive')
-Sender   = require('../lib/sender')
+Parser   = require('./parser')
+Archive  = require('./archive')
+Sender   = require('./sender')
 Firebase = require('firebase')
 
-class Cron
+module.exports = class Job
   constructor: ->
     @firebaseAppName = 'rss-rocks'
     @firebaseRef     = new Firebase("https://#{@firebaseAppName}.firebaseio.com")
@@ -45,6 +44,3 @@ class Cron
         new Sender @usersRef, feedsAndNewPosts, ->
           console.log 'done'
           process.exit()
-
-job = new Cron()
-job.start()
