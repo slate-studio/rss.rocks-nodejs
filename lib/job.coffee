@@ -5,7 +5,7 @@ Array::unique = ->
   value for key, value of output
 
 Parser   = require('./parser')
-Archive  = require('./archive')
+Cacher   = require('./cacher')
 Sender   = require('./sender')
 Firebase = require('firebase')
 
@@ -38,8 +38,8 @@ module.exports = class Job
   sendEmailsWithNewPosts: ->
     # fetch feeds urls and collect all published posts
     new Parser @feeds, (feedsAndPosts) =>
-      # collect new posts and archive them
-      new Archive @firebaseRef, feedsAndPosts, (feedsAndNewPosts) =>
+      # collect new posts and put newest to the cache
+      new Cacher @firebaseRef, feedsAndPosts, (feedsAndNewPosts) =>
         # send email with new posts to subscribers
         new Sender @usersRef, feedsAndNewPosts, ->
           console.log 'done'
