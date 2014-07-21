@@ -17,10 +17,9 @@ getParams = (str) ->
 
 
 module.exports = class Parser
-  constructor: (@urls, @onFetchedCallback) ->
-    @urlsCount   = @urls.length
-    @urlsFetched = 0
-    @posts       = {}
+  constructor: (@urls, callback) ->
+    @posts = {}
+    @onFeched = _after @urls.length, => callback(@posts)
 
     @urls.map (url) =>
       @posts[url] = []
@@ -68,11 +67,5 @@ module.exports = class Parser
         posts[url].push({ title: post.title, link: post.link })
 
   done: (err) ->
-    if err
-      console.log(err, err.stack)
-
-    @urlsFetched += 1
-    console.log 'fetched ' + @urlsFetched + ' out of ' + @urlsCount
-
-    if @urlsFetched == @urlsCount
-      @onFetchedCallback(@posts)
+    if err then console.log(err, err.stack)
+    @onFeched()

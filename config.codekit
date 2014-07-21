@@ -13,25 +13,25 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
-	"\/lib\/archive.coffee": {
+	"\/lib\/cacher.coffee": {
 		"createSourceMap": 0,
 		"fileType": 32,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/lib\/archive.coffee",
+		"inputAbbreviatedPath": "\/lib\/cacher.coffee",
 		"minifyOutput": 1,
-		"outputAbbreviatedPath": "\/lib\/archive.js",
+		"outputAbbreviatedPath": "\/lib\/cacher.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
-	"\/lib\/archive.js": {
+	"\/lib\/cacher.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/lib\/archive.js",
-		"outputAbbreviatedPath": "\/lib\/min\/archive-min.js",
+		"inputAbbreviatedPath": "\/lib\/cacher.js",
+		"outputAbbreviatedPath": "\/lib\/min\/cacher-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -72,17 +72,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"syntaxCheckerStyle": 1
-		},
-	"\/lib\/parser.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/lib\/parser.js",
-		"outputAbbreviatedPath": "\/lib\/min\/parser-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
 	"\/lib\/sender.coffee": {
@@ -3781,6 +3770,41 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
+		},
+	"\/node_modules\/postmark\/changelog.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/node_modules\/postmark\/changelog.md",
+		"outputAbbreviatedPath": "\/node_modules\/postmark\/changelog.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/node_modules\/postmark\/lib\/postmark\/index.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/node_modules\/postmark\/lib\/postmark\/index.js",
+		"outputAbbreviatedPath": "\/node_modules\/postmark\/lib\/postmark\/min\/index-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/node_modules\/postmark\/README.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/node_modules\/postmark\/README.md",
+		"outputAbbreviatedPath": "\/node_modules\/postmark\/README.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		},
 	"\/node_modules\/request\/CHANGELOG.md": {
 		"enableFootnoteSupport": 0,
