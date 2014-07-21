@@ -46,7 +46,6 @@ module.exports = class Job
         urls = for id, s of profile.subscriptions
           s.url
         Array::push.apply(feeds, urls)
-
     @feeds = feeds.unique()
 
   sendEmailsWithNewPosts: ->
@@ -56,6 +55,5 @@ module.exports = class Job
       # collect new posts and put newest to the cache
       new Cacher @firebaseRef, feedsAndPosts, (feedsAndNewPosts) =>
         # send email with new posts to subscribers
-        new Sender @usersRef, feedsAndNewPosts, ->
-          console.log 'done'
+        new Sender @users, feedsAndNewPosts, ->
           process.exit()
