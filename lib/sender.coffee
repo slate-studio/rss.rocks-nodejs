@@ -12,11 +12,11 @@ module.exports = class Sender
       callback()
 
   sendEmails: (emails, callback) ->
-    onSent = _after emails.length, -> console.log "#{emails.length} emails sent" ; callback()
-
     Postmark.batch emails, (error, success) ->
       if error then console.error("Unable to send via postmark: " + error.message)
-      onSent()
+
+      console.log "#{emails.length} emails sent"
+      callback()
 
   generateEmails: (feeds) ->
     emails = []
