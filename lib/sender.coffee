@@ -14,11 +14,8 @@ module.exports = class Sender
   sendEmails: (emails, callback) ->
     onSent = _after emails.length, -> console.log "#{emails.length} emails sent" ; callback()
 
-    emails.map (e) ->
-      opts = { "From": e.fromEmail, "To": e.toEmail, "Subject": e.subject, "TextBody": e.body }
-      Postmark.send opts, (error, success) ->
-        if error then console.error("Unable to send via postmark: " + error.message)
-        onSent()
+    Postmark.batch emails, (error, success) ->
+      if error then console.error("Unable to send via postmark: " + error.message)
       onSent()
 
   generateEmails: (feeds) ->
@@ -30,6 +27,6 @@ module.exports = class Sender
             posts = feeds[s.url]
             if posts
               emls = for p in posts
-                { fromEmail: 'service@kra.vc', toEmail: profile.email, subject: s.name, body: "#{p.title}\n#{p.link}" }
+                { "From": "service@kra.vc", "To": profile.email, "Subject": s.name, "TextBody": "#{p.title}\n#{p.link}" }
               emails.appendArray(emls)
     return emails
