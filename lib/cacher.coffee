@@ -9,9 +9,8 @@ module.exports = class Cacher
 
       @feedsWithNewPosts = @getFeedsWithNewPosts(feedsAndPosts, cache)
 
-      if @feedsWithNewPosts.length > 0
-        console.log "feeds with new posts"
-        console.log @feedsWithNewPosts
+      console.log "feeds with new posts"
+      console.log @feedsWithNewPosts
 
       @updateCache(feedsAndPosts)
 
