@@ -31,5 +31,5 @@ module.exports = class Sender
             if posts
               emls = for p in posts
                 { fromEmail: '', toEmail: profile.email, subject: s.name, body: "#{p.title}\n#{p.link}" }
-              Array::push.apply(emails, emls)
+              emails.appendArray(emls)
     return emails

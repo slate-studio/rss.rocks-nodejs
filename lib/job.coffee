@@ -11,6 +11,12 @@ Array::unique = ->
   output[@[key]] = @[key] for key in [0...@length]
   value for key, value of output
 
+Array::appendArray = (array) ->
+  Array::push.apply(this, array)
+
+Array::clone = (array) ->
+  return this.slice(0)
+
 
 Parser   = require('./parser')
 Cacher   = require('./cacher')
@@ -43,9 +49,8 @@ module.exports = class Job
     feeds = []
     for uid, profile of @users
       do (uid, profile) ->
-        urls = for id, s of profile.subscriptions
-          s.url
-        Array::push.apply(feeds, urls)
+        urls = (s.url for id, s of profile.subscriptions)
+        feeds.appendArray(urls)
     @feeds = feeds.unique()
 
   sendEmailsWithNewPosts: ->
