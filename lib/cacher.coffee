@@ -31,10 +31,13 @@ module.exports = class Cacher
       do (feedUrl, posts) ->
         lastPostUrl = lastCachedUrls[feedUrl]
 
-        postsClone = posts.clone()
-        newPosts = (post while (post = postsClone.shift()).link != lastPostUrl)
+        # here we process case when new subscription is added by user
+        # and it's not yet in cache
+        if lastPostUrl
+          postsClone = posts.clone()
+          newPosts = (post while (post = postsClone.shift()).link != lastPostUrl)
 
-        result[feedUrl] = newPosts if newPosts.length > 0
+          result[feedUrl] = newPosts if newPosts.length > 0
 
     return result
 
