@@ -1,4 +1,6 @@
-# RSS.Rocks! Node.js Backend
+# rss.rocks 
+
+Node.js Backend.
 
 Heroku setup: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
@@ -26,7 +28,7 @@ https://github.com/joyent/node/wiki/Node-Hosting
 
 # TODO:
 
-. add lock for cron job
-. add security rules for firebase
-. add remove account feature
-. finish reset password feature
+* add lock for cron job
+* add security rules for firebase
+* add remove account feature
+* finish reset password feature
