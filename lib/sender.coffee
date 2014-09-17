@@ -27,6 +27,6 @@ module.exports = class Sender
             posts = feeds[s.url]
             if posts
               emls = for p in posts
-                { "From": "service@kra.vc", "To": profile.email, "Subject": s.name, "TextBody": "#{p.title}\n#{p.link}" }
+                { "From": "rss@kra.vc", "To": profile.email, "Subject": s.name, "TextBody": "#{p.title}\n#{p.link}" }
               emails.appendArray(emls)
     return emails
