@@ -34,9 +34,14 @@ module.exports = class Cacher
         # and it's not yet in cache
         if lastPostUrl
           postsClone = posts.clone()
-          newPosts = (post while (post = postsClone.shift()).link != lastPostUrl)
-
-          result[feedUrl] = newPosts if newPosts.length > 0
+          newPosts = []
+          try
+            newPosts = (post while (post = postsClone.shift()).link != lastPostUrl)
+          catch error
+            console.log feedUrl
+            console.log 'Cached lastest post URL is not found.'
+          finally
+            result[feedUrl] = newPosts if newPosts.length > 0
 
     return result
 
