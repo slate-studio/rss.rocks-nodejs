@@ -48,7 +48,10 @@ module.exports = class Cacher
   updateCache: (feedsAndPosts) ->
     cache = []
     for url, posts of feedsAndPosts
-      cache.push { feedUrl: url, latestPostUrl: posts[0].link }
+      if posts.length > 0
+        cache.push { feedUrl: url, latestPostUrl: posts[0].link }
+      else
+        console.log "WARNING: #{url} HAS NO POSTS"
 
     @cacheRef.set cache, (error) =>
       if error
